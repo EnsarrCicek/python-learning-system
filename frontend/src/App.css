@@ -682,3 +682,34 @@ pre {
   color: #f87171;
   padding: 18px;
 }
+.stdin-section {
+  margin-top: 15px;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stdin-header {
+  padding: 10px 15px;
+  background: #111827;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom: 1px solid #1e293b;
+}
+
+.stdin-input {
+  width: 100%;
+  min-height: 90px;
+  padding: 15px;
+  border: none;
+  outline: none;
+  resize: vertical;
+
+  background: #020617;
+  color: #e2e8f0;
+
+  font-family: Consolas, Monaco, monospace;
+  font-size: 14px;
+}

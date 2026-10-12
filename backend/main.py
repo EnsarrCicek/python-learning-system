@@ -251,14 +251,15 @@ def run_code(request: RunCodeRequest):
         "python",
         "-I",
         "-B",
-        "-"
+        "-c",
+        request.code
     ]
 
     try:
 
         process = subprocess.run(
         command,
-        input=request.code + "\n",
+        input=request.stdin,
         text=True,
         encoding="utf-8",
         errors="replace",

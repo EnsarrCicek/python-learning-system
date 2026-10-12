@@ -16,11 +16,11 @@ function App() {
   const [result, setResult] = useState(null)
 
   const [backendConnected, setBackendConnected] = useState(false)
-
+  const [stdin, setStdin] = useState("")
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/")
+    fetch("http://127.0.0.1:8001/")
       .then((response) => response.json())
       .then(() => {
         setBackendConnected(true)
@@ -30,7 +30,7 @@ function App() {
       })
 
 
-    fetch("http://127.0.0.1:8000/lessons")
+    fetch("http://127.0.0.1:8001/lessons")
       .then((response) => response.json())
       .then((data) => {
         setLessons(data)
@@ -44,7 +44,7 @@ function App() {
 
   function openLesson(lessonId) {
 
-    fetch(`http://127.0.0.1:8000/lessons/${lessonId}`)
+    fetch(`http://127.0.0.1:8001/lessons/${lessonId}`)
       .then((response) => response.json())
       .then((data) => {
         setSelectedLesson(data)
@@ -58,7 +58,7 @@ function App() {
   function openTopic(topicId) {
 
     fetch(
-      `http://127.0.0.1:8000/lessons/1/topics/${topicId}`
+      `http://127.0.0.1:8001/lessons/1/topics/${topicId}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -74,7 +74,7 @@ function App() {
 
   function checkAnswer() {
 
-    fetch("http://127.0.0.1:8000/check-answer", {
+    fetch("http://127.0.0.1:8001/check-answer", {
 
       method: "POST",
 
@@ -99,7 +99,7 @@ function App() {
   setOutput("")
   setRunError("")
 
-  fetch("http://127.0.0.1:8000/run-code", {
+  fetch("http://127.0.0.1:8001/run-code", {
 
     method: "POST",
 
@@ -109,7 +109,8 @@ function App() {
 
     body: JSON.stringify({
       code: code,
-      stdin: ""
+      stdin: stdin
+
     })
 
   })
@@ -401,7 +402,21 @@ function App() {
 
               </section>
 
+              <section className="stdin-section">
 
+                <div className="stdin-header">
+                  Program Girdisi (stdin)
+                </div>
+
+                <textarea
+                  className="stdin-input"
+                  value={stdin}
+                  onChange={(event) => setStdin(event.target.value)}
+                  placeholder={"input() için değerleri buraya yaz...\nHer input için yeni satır kullan."}
+                  spellCheck="false"
+                />
+
+              </section>
 
               <div className="action-buttons">
 
